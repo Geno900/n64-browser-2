@@ -1,0 +1,14 @@
+name: build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anacierdem/libdragon-docker-action@v1
+        with:
+          command: make
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rom
+          path: "*.z64"
